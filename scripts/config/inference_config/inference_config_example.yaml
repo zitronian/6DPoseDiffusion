@@ -1,0 +1,30 @@
+##
+#
+##
+
+wandb_info:
+  description: 'Trained on all, test obj 8 (driller)'
+  wandb_tags: ['single obj']
+
+model_info:
+  model_dir: 'model_onallobjects'
+  model_weights: 'model_epoch_3500.pth'
+  train_config: 'train_config_allobjects'
+
+sampling_kwargs:
+  sampler: 'LD'
+  n_samples: 20
+  num_steps: 100
+  render_interval: 1
+  refiner: null
+
+inference_data_kwargs:
+  sub_dir: 'real'
+  idx_txt_file: 'test_idxs_frompaper.txt'
+  rgb_postfix: 'png'
+  fraction: 1.0
+  fraction_seed: 42
+
+dataset_kwargs:
+  obj_ids: [8]
+  noisy_mask: False

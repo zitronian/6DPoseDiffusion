@@ -1,0 +1,74 @@
+##
+# Example Training
+##
+
+wandb_info:
+  description: '6D Pose Estimation training on object 8 (driller) of linemod dataset'
+  wandb_tags: ['Linemod']
+
+model_arguments:
+  z_dim: 192
+  pcl_encoder: 'VNNResnetPointnet'
+  only_front_facing_points: True
+  center_obj: True
+  noise_embed_dim: 128
+  scene_object_encoder_mode: 'shared_encoder'
+  scene_obj_descriptor: 'flattened_points_descriptor'
+  feature_encoder_layer_dim: [512, 512, 512]
+  dropout: [0, 1, 2]
+  dropout_prob: 0.2
+  distance_awarness_n_points: 128
+  front_facing_noise: True
+  feed_pose_explicitly: True
+  attention_encoding: False
+
+data_arguments:
+  dataset_kwargs:
+    obj_ids: [8]
+    center_scene: True
+    crop_around_obj: True
+    crop_around_target: True
+    scene_n_points: 1024
+    pc_scale: 500
+
+  train_data_kwargs:
+    mask_dir: 'mask_visib'
+    idx_txt_file: 'train_idxs_frompaper.txt'
+    rgb_postfix: 'png'
+    fraction: 1.0
+    fraction_seed: 42
+
+  test_data_kwargs:
+    mask_dir: 'mask_visib'
+    idx_txt_file: 'test_idxs_frompaper.txt'
+    rgb_postfix: 'png'
+    fraction: 0.2
+    fraction_seed: 42
+
+train_arguments:
+  lr: 0.0001
+  batch_size: 4
+  epochs: 5000
+  ckpt_interval: 100
+  embedding_mode: 'separate'
+  data_dir: 'bop_data'
+  dataset: 'lm'
+  train_sub_dir: 'real'
+  test_sub_dir: 'real'
+  train_test_split: null
+  ckpt: null
+  load_modules: [] # which part of the model should be loaded, if empty, everything is loaded
+  ckpt_as_pretrained: False
+  optimizer: 'AdamW'
+  scheduler: 'cosine'
+  scheduler_kwargs:
+    T_max: 500
+
+
+losses:
+  DSM:
+    embedding_mode: 'separate'
+    n_noise_scales_per_sample: 4
+    loss_weights: [1, 1, 1, 1, 1, 1]
+    lds: False
+    diffusion_in_latent: False

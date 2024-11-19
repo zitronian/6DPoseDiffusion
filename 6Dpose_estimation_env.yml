@@ -1,0 +1,21 @@
+name: 6Dpose_estimation_env
+channels:
+  - defaults
+dependencies:
+  - trimesh
+  - pip
+  - torchaudio
+  - tqdm
+  - cudatoolkit
+  - pytorch-cuda=11.8
+  - python=3.10
+  - pynvml
+  - torchvision
+  - matplotlib
+  - wandb
+  - numpy
+  - pandas
+  - cudatoolkit-dev
+  - scikit-sparse
+  - pytorch
+  - scipy
