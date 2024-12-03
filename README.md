@@ -1,10 +1,25 @@
 # PyTorch implementation for 6D Pose Estimation using a Noise Conditioned Score Model
 
-This repo provides tools to train and test a Noise Conditioned Score Model for 6D pose estimation.
+This repo provides the Code for the publication "Particle-based 6D Object Pose Estimation from Point Clouds using Diffusion Models" (<a href="https://arxiv.org/abs/2412.00835">Link to Paper</a>) by Christian Möller, Niklas Funk, Jan Peters.
+It therefore contains the functionality to train and test a Noise Conditioned Score Model for 6D pose estimation.
 Training is conducted via a Denoised Score Matching objective and inference is performed using
 Langevin dynamics.
 
 For logging we use weights and bias. Please initialize https://docs.wandb.ai/quickstart.
+
+If you use this project in your research, please cite it.
+
+```citation
+@misc{moeller24particlebased6dobjectpose,
+      title={Particle-based 6D Object Pose Estimation from Point Clouds using Diffusion Models}, 
+      author={Christian M\"oller and Niklas Funk and Jan Peters},
+      year={2024},
+      eprint={2412.00835},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2412.00835}, 
+}
+```
 
 ## Environment
 
